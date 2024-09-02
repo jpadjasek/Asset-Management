@@ -1,6 +1,5 @@
 package org.example.assetmanagement.model;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -42,11 +41,11 @@ public class Asset {
     Set<Group> groups = new HashSet<>();
 
 
-    public static Asset createAsset(String type, String description, String name) {
-        return new Asset(UUID.randomUUID(), type, description, name, new HashSet<>());
+    public static Asset createAsset(String name, String description, String type) {
+        return new Asset(UUID.randomUUID(), name, description, type, new HashSet<>());
     }
 
-    public static Asset updateAsset(Asset asset, String type, String description, String name) {
-        return new Asset(asset.getAssetUUID(), type, description, name, asset.getGroups());
+    public static Asset updateAsset(Asset asset, String name, String description, String type) {
+        return new Asset(asset.getAssetUUID(), name, description, type, asset.getGroups());
     }
 }

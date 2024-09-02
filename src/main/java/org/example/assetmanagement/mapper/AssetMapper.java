@@ -5,7 +5,6 @@ import org.example.assetmanagement.model.Asset;
 import org.example.assetmanagement.model.Group;
 
 import java.util.List;
-import java.util.function.Function;
 
 public class AssetMapper {
 
