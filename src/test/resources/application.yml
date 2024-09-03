@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: Asset-Management
+flyway:
+  locations: filesystem:db/migration

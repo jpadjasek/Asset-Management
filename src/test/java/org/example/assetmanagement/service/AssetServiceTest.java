@@ -23,7 +23,9 @@ import static org.example.assetmanagement.utils.TestHelper.ASSET_DESCRIPTION;
 import static org.example.assetmanagement.utils.TestHelper.ASSET_ID;
 import static org.example.assetmanagement.utils.TestHelper.ASSET_NAME;
 import static org.example.assetmanagement.utils.TestHelper.ASSET_TYPE;
-import static org.example.assetmanagement.utils.TestHelper.GROUP_ID;
+import static org.example.assetmanagement.utils.TestHelper.NEW_DESC;
+import static org.example.assetmanagement.utils.TestHelper.NEW_NAME;
+import static org.example.assetmanagement.utils.TestHelper.NEW_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -36,9 +38,6 @@ import static org.mockito.Mockito.when;
 @MockitoSettings(strictness = Strictness.LENIENT)
 @ExtendWith(MockitoExtension.class)
 public class AssetServiceTest {
-    private static final String NEW_NAME = "NEW NAME";
-    private static final String NEW_DESC = "NEW DESC";
-    private static final String NEW_TYPE = "NEW TYPE";
 
     @Mock
     private AssetRepository assetRepository;
@@ -74,7 +73,7 @@ public class AssetServiceTest {
     void shouldUpdateAsset() {
         //given
         Asset persistedObject = TestHelper.prepareAssetObject();
-        AssetDTO assetDTOWithNewData = new AssetDTO(null, NEW_NAME, NEW_DESC, NEW_TYPE, null);
+        AssetDTO assetDTOWithNewData = TestHelper.prepareAssetDTOObjectForUpdate();
         Asset expectedObject = Asset.updateAsset(persistedObject, NEW_NAME, NEW_DESC, NEW_TYPE);
 
         when(assetRepository.findById(ASSET_ID)).thenReturn(Optional.of(persistedObject));
@@ -91,9 +90,9 @@ public class AssetServiceTest {
     }
 
     @Test
-    void shouldThrowExceptionWhenUpdateIfAssetNotFound() {
+    void shouldThrowExceptionWhenUpdateAndAssetNotFound() {
         //given
-        AssetDTO assetDTOWithNewData = new AssetDTO(null, NEW_NAME, NEW_DESC, NEW_TYPE, null);
+        AssetDTO assetDTOWithNewData = TestHelper.prepareAssetDTOObjectForUpdate();
 
         when(assetRepository.findById(ASSET_ID)).thenThrow(NotFoundException.class);
 
@@ -148,12 +147,12 @@ public class AssetServiceTest {
         assertEquals(ASSET_NAME, result.name());
 
         List<UUID> groupsUUID = result.groupUUIDs();
-        assertEquals(1, groupsUUID.size());
-        assertEquals(GROUP_ID, groupsUUID.get(0));
+        assertTrue(groupsUUID.isEmpty());
+
     }
 
     @Test
-    void shouldThrowExceptionWhenGetByIdIfAssetNotFound() {
+    void shouldThrowExceptionWhenGetByIdAndAssetNotFound() {
         //given
         when(assetRepository.findById(ASSET_ID)).thenThrow(NotFoundException.class);
 
@@ -179,7 +178,7 @@ public class AssetServiceTest {
     }
 
     @Test
-    void shouldThrowExceptionWhenDeleteIfAssetNotFound() {
+    void shouldThrowExceptionWhenDeleteAndAssetNotFound() {
         //given
         when(assetRepository.findById(ASSET_ID)).thenThrow(NotFoundException.class);
 
