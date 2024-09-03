@@ -3,3 +3,4 @@ spring:
     name: Asset-Management
 flyway:
   locations: filesystem:db/migration
+  schemas: app-db

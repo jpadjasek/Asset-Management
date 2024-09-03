@@ -1,0 +1,28 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: 'assetmanagement:latest'
+    container_name: app
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=password
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=test
+      - SPRING_DATASOURCE_PASSWORD=password
+      - FLYWAY_USER=test
+      - FLYWAY_PASSWORD=password
+      - FLYWAY_URL=jdbc:postgresql://db:5432/postgres
+    ports:
+      - '8080:8080'
+  db:
+    image: 'postgres:latest'
+    ports:
+      - '5432'
+    environment:
+      - 'POSTGRES_USER=test'
+      - 'POSTGRES_DB=postgres'
+      - 'POSTGRES_PASSWORD=password'

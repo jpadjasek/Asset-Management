@@ -1,0 +1,347 @@
+openapi: "3.1.0"
+info:
+  title: "Asset_Management API"
+  description: "Asset_Management API"
+  version: "1.0.0"
+servers:
+  - url: "https://Asset_Management"
+paths:
+  /assets:
+    get:
+      summary: "GET assets"
+      operationId: "getAll"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/AssetDTO"
+    put:
+      summary: "PUT assets"
+      operationId: "getAll"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/AssetDTO"
+    post:
+      summary: "POST assets"
+      operationId: "getAll"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/AssetDTO"
+    delete:
+      summary: "DELETE assets"
+      operationId: "getAll"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/AssetDTO"
+    options:
+      summary: "OPTIONS assets"
+      operationId: "getAll"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/AssetDTO"
+    head:
+      summary: "HEAD assets"
+      operationId: "getAll"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/AssetDTO"
+    patch:
+      summary: "PATCH assets"
+      operationId: "getAll"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/AssetDTO"
+    trace:
+      summary: "TRACE assets"
+      operationId: "getAll"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/AssetDTO"
+  /assets/{assetUUID}:
+    get:
+      summary: "GET assets/{assetUUID}"
+      operationId: "getById"
+      parameters:
+        - name: "assetUUID"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AssetDTO"
+    put:
+      summary: "PUT assets/{assetUUID}"
+      operationId: "update"
+      parameters:
+        - name: "assetUUID"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssetDTO"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AssetDTO"
+    delete:
+      summary: "DELETE assets/{assetUUID}"
+      operationId: "delete"
+      parameters:
+        - name: "assetUUID"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+      responses:
+        "204":
+          description: "No Content"
+  /groups:
+    get:
+      summary: "GET groups"
+      operationId: "getAll"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/GroupDTO"
+    put:
+      summary: "PUT groups"
+      operationId: "getAll"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/GroupDTO"
+    post:
+      summary: "POST groups"
+      operationId: "getAll"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/GroupDTO"
+    delete:
+      summary: "DELETE groups"
+      operationId: "getAll"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/GroupDTO"
+    options:
+      summary: "OPTIONS groups"
+      operationId: "getAll"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/GroupDTO"
+    head:
+      summary: "HEAD groups"
+      operationId: "getAll"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/GroupDTO"
+    patch:
+      summary: "PATCH groups"
+      operationId: "getAll"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/GroupDTO"
+    trace:
+      summary: "TRACE groups"
+      operationId: "getAll"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/GroupDTO"
+  /assets/{assetUUID}/groups:
+    post:
+      summary: "POST assets/{assetUUID}/groups"
+      operationId: "assignAsset"
+      parameters:
+        - name: "assetUUID"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssetAssignmentDTO"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AssetAssignmentDTO"
+  /assets/{assetUUID}/groups/{groupUUID}:
+    delete:
+      summary: "DELETE assets/{assetUUID}/groups/{groupUUID}"
+      operationId: "assignAsset"
+      parameters:
+        - name: "assetUUID"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "groupUUID"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+      responses:
+        "204":
+          description: "No Content"
+  /groups/{groupUUID}/assets:
+    get:
+      summary: "GET groups/{groupUUID}/assets"
+      operationId: "getGroupAssets"
+      parameters:
+        - name: "groupUUID"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/AssetDTO"
+components:
+  schemas:
+    AssetDTO:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        description:
+          type: "string"
+        type:
+          type: "string"
+    GroupDTO:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        description:
+          type: "string"
+    AssetAssignmentDTO:
+      type: "object"
+      properties:
+        assetUUID:
+          type: "string"
+          format: "uuid"
+        groupUUID:
+          type: "string"
+          format: "uuid"

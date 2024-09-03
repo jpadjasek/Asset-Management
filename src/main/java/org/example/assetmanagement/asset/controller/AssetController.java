@@ -3,6 +3,7 @@ package org.example.assetmanagement.asset.controller;
 import org.example.assetmanagement.asset.dto.AssetDTO;
 import org.example.assetmanagement.asset.service.AssetService;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,12 +28,12 @@ public class AssetController {
     }
 
     @PostMapping
-    public AssetDTO create(@RequestBody AssetDTO assetDTO) {
+    public AssetDTO create(@Validated @RequestBody AssetDTO assetDTO) {
         return assetService.create(assetDTO);
     }
 
     @PutMapping("/{assetUUID}")
-    public AssetDTO update(@PathVariable UUID assetUUID, @RequestBody AssetDTO assetDTO) {
+    public AssetDTO update(@PathVariable UUID assetUUID, @Validated @RequestBody AssetDTO assetDTO) {
         return assetService.update(assetUUID, assetDTO);
     }
 

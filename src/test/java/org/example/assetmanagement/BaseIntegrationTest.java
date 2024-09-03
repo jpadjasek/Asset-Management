@@ -3,7 +3,6 @@ package org.example.assetmanagement;
 import io.restassured.RestAssured;
 import org.example.assetmanagement.asset.repository.AssetRepository;
 import org.example.assetmanagement.group.repository.GroupRepository;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +31,6 @@ public abstract class BaseIntegrationTest {
     @BeforeAll
     static void beforeAll() {
         postgres.start();
-    }
-
-    @AfterAll
-    static void afterAll() {
-        postgres.stop();
     }
 
     @DynamicPropertySource

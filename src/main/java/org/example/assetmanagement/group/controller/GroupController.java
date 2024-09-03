@@ -2,6 +2,7 @@ package org.example.assetmanagement.group.controller;
 
 import org.example.assetmanagement.group.dto.GroupDTO;
 import org.example.assetmanagement.group.service.GroupService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,7 @@ public class GroupController {
     }
 
     @PostMapping
-    public GroupDTO create(@RequestBody GroupDTO assetDTO) {
+    public GroupDTO create(@Validated @RequestBody GroupDTO assetDTO) {
         return groupService.create(assetDTO);
     }
 }
