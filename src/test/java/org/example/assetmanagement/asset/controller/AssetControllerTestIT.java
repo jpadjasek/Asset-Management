@@ -1,4 +1,4 @@
-package org.example.assetmanagement.controller;
+package org.example.assetmanagement.asset.controller;
 
 import io.restassured.http.ContentType;
 import org.example.assetmanagement.BaseIntegrationTest;

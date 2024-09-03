@@ -2,6 +2,7 @@ package org.example.assetmanagement;
 
 import io.restassured.RestAssured;
 import org.example.assetmanagement.asset.repository.AssetRepository;
+import org.example.assetmanagement.group.repository.GroupRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,6 +26,8 @@ public abstract class BaseIntegrationTest {
     @Autowired
     protected AssetRepository assetRepository;
 
+    @Autowired
+    protected GroupRepository groupRepository;
 
     @BeforeAll
     static void beforeAll() {
@@ -50,5 +53,6 @@ public abstract class BaseIntegrationTest {
     void setUp() {
         RestAssured.baseURI = "http://localhost:" + port;
         assetRepository.deleteAll();
+        groupRepository.deleteAll();
     }
 }

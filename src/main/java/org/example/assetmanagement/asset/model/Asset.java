@@ -59,7 +59,7 @@ public class Asset {
     }
 
     public void removeGroup(Group group) {
-        groups.remove(group);
+        this.groups.remove(group);
     }
 
     @Override

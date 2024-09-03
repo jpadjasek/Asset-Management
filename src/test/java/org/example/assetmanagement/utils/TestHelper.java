@@ -27,8 +27,16 @@ public class TestHelper {
         return new Asset(ASSET_ID, ASSET_NAME, ASSET_DESCRIPTION, ASSET_TYPE, new HashSet<>());
     }
 
+    public static Asset prepareAssetObject(UUID assetUUID) {
+        return new Asset(assetUUID, ASSET_NAME, ASSET_DESCRIPTION, ASSET_TYPE, new HashSet<>());
+    }
+
     public static Group prepareGroupObject() {
         return new Group(GROUP_ID, GROUP_NAME, GROUP_DESCRIPTION, new HashSet<>());
+    }
+
+    public static Group prepareGroupObject(UUID groupUUID) {
+        return new Group(groupUUID, GROUP_NAME, GROUP_DESCRIPTION, new HashSet<>());
     }
 
     public static AssetDTO prepareAssetDTOObjectForUpdate() {

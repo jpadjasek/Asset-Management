@@ -69,7 +69,7 @@ public class AssetService {
     }
 
     public AssetAssignmentDTO assignToGroup(UUID assetUUID, AssetAssignmentDTO assetAssignmentDTO) {
-        var persistedAsset = findById(assetUUID);
+        var persistedAsset = findById(assetAssignmentDTO.assetUUID());
         var persistedGroup = groupService.findById(assetAssignmentDTO.groupUUID());
 
         persistedAsset.addGroup(persistedGroup);
