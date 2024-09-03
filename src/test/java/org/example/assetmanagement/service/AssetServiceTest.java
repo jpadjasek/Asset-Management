@@ -1,10 +1,12 @@
 package org.example.assetmanagement.service;
 
-import org.example.assetmanagement.dto.AssetDTO;
+import org.example.assetmanagement.asset.dto.AssetDTO;
+import org.example.assetmanagement.asset.mapper.AssetMapper;
+import org.example.assetmanagement.asset.model.Asset;
+import org.example.assetmanagement.asset.repository.AssetRepository;
+import org.example.assetmanagement.asset.service.AssetService;
 import org.example.assetmanagement.exception.NotFoundException;
-import org.example.assetmanagement.mapper.AssetMapper;
-import org.example.assetmanagement.model.Asset;
-import org.example.assetmanagement.repository.AssetRepository;
+import org.example.assetmanagement.group.service.GroupService;
 import org.example.assetmanagement.utils.TestHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,9 +46,12 @@ public class AssetServiceTest {
 
     private AssetService assetService;
 
+    @Mock
+    private GroupService groupService;
+
     @BeforeEach
     void setUp() {
-        assetService = new AssetService(assetRepository);
+        assetService = new AssetService(assetRepository, groupService);
     }
 
     @Test

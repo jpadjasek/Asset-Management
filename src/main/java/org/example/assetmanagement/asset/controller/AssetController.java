@@ -1,7 +1,7 @@
-package org.example.assetmanagement.controller;
+package org.example.assetmanagement.asset.controller;
 
-import org.example.assetmanagement.service.AssetService;
-import org.example.assetmanagement.dto.AssetDTO;
+import org.example.assetmanagement.asset.dto.AssetDTO;
+import org.example.assetmanagement.asset.service.AssetService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

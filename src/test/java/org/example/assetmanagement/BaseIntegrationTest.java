@@ -1,7 +1,7 @@
 package org.example.assetmanagement;
 
 import io.restassured.RestAssured;
-import org.example.assetmanagement.repository.AssetRepository;
+import org.example.assetmanagement.asset.repository.AssetRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

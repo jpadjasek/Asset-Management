@@ -1,4 +1,4 @@
-package org.example.assetmanagement.dto;
+package org.example.assetmanagement.asset.dto;
 
 import java.util.List;
 import java.util.UUID;

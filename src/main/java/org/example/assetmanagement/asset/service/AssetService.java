@@ -1,25 +1,29 @@
-package org.example.assetmanagement.service;
+package org.example.assetmanagement.asset.service;
 
 import lombok.extern.log4j.Log4j2;
-import org.example.assetmanagement.dto.AssetDTO;
+import org.example.assetmanagement.asset.dto.AssetAssignmentDTO;
+import org.example.assetmanagement.asset.dto.AssetDTO;
+import org.example.assetmanagement.asset.model.Asset;
+import org.example.assetmanagement.asset.repository.AssetRepository;
 import org.example.assetmanagement.exception.NotFoundException;
-import org.example.assetmanagement.model.Asset;
-import org.example.assetmanagement.repository.AssetRepository;
+import org.example.assetmanagement.group.service.GroupService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
-import static org.example.assetmanagement.mapper.AssetMapper.toDto;
+import static org.example.assetmanagement.asset.mapper.AssetMapper.toDto;
 
 @Log4j2
 @Service
 public class AssetService {
 
     private final AssetRepository assetRepository;
+    private final GroupService groupService;
 
-    public AssetService(AssetRepository assetRepository) {
+    public AssetService(AssetRepository assetRepository, GroupService groupService) {
         this.assetRepository = assetRepository;
+        this.groupService = groupService;
     }
 
     public AssetDTO create(AssetDTO assetDTO) {
@@ -59,9 +63,28 @@ public class AssetService {
         assetRepository.delete(asset);
     }
 
-    private Asset findById(UUID assetUUID) {
+    public Asset findById(UUID assetUUID) {
         return assetRepository.findById(assetUUID)
                 .orElseThrow(() -> new NotFoundException(String.format("Asset with id %s not found", assetUUID)));
+    }
+
+    public AssetAssignmentDTO assignToGroup(UUID assetUUID, AssetAssignmentDTO assetAssignmentDTO) {
+        var persistedAsset = findById(assetUUID);
+        var persistedGroup = groupService.findById(assetAssignmentDTO.groupUUID());
+
+        persistedAsset.addGroup(persistedGroup);
+
+        assetRepository.save(persistedAsset);
+        return AssetAssignmentDTO.merge(assetAssignmentDTO, assetUUID);
+    }
+
+    public void removeFromGroup(UUID assetUUID, UUID groupUUID) {
+        var persistedAsset = findById(assetUUID);
+        var persistedGroup = groupService.findById(groupUUID);
+
+        persistedAsset.removeGroup(persistedGroup);
+
+        assetRepository.save(persistedAsset);
     }
 
 }

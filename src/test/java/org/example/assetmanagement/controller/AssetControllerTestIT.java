@@ -2,9 +2,9 @@ package org.example.assetmanagement.controller;
 
 import io.restassured.http.ContentType;
 import org.example.assetmanagement.BaseIntegrationTest;
-import org.example.assetmanagement.dto.AssetDTO;
-import org.example.assetmanagement.mapper.AssetMapper;
-import org.example.assetmanagement.model.Asset;
+import org.example.assetmanagement.asset.dto.AssetDTO;
+import org.example.assetmanagement.asset.mapper.AssetMapper;
+import org.example.assetmanagement.asset.model.Asset;
 import org.example.assetmanagement.utils.TestHelper;
 import org.junit.jupiter.api.Test;
 

@@ -1,8 +1,8 @@
 package org.example.assetmanagement.utils;
 
-import org.example.assetmanagement.dto.AssetDTO;
-import org.example.assetmanagement.model.Asset;
-import org.example.assetmanagement.model.Group;
+import org.example.assetmanagement.asset.dto.AssetDTO;
+import org.example.assetmanagement.asset.model.Asset;
+import org.example.assetmanagement.group.model.Group;
 
 import java.util.ArrayList;
 import java.util.HashSet;

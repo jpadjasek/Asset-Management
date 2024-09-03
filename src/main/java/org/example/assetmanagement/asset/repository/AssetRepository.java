@@ -1,6 +1,6 @@
-package org.example.assetmanagement.repository;
+package org.example.assetmanagement.asset.repository;
 
-import org.example.assetmanagement.model.Asset;
+import org.example.assetmanagement.asset.model.Asset;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

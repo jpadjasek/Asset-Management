@@ -1,4 +1,4 @@
-package org.example.assetmanagement.model;
+package org.example.assetmanagement.asset.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,17 +7,22 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.example.assetmanagement.group.model.Group;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity(name = "assets")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+
 public class Asset {
 
     @Id
@@ -35,10 +40,10 @@ public class Asset {
 
     @ManyToMany
     @JoinTable(name = "asset_groups",
-            joinColumns = {@JoinColumn(name = "group_uuid")},
-            inverseJoinColumns = {@JoinColumn(name = "asset_uuid")}
+            joinColumns = @JoinColumn(name = "asset_uuid"),
+            inverseJoinColumns = @JoinColumn(name = "group_uuid")
     )
-    Set<Group> groups = new HashSet<>();
+    Set<Group> groups;
 
 
     public static Asset createAsset(String name, String description, String type) {
@@ -47,5 +52,26 @@ public class Asset {
 
     public static Asset updateAsset(Asset asset, String name, String description, String type) {
         return new Asset(asset.getAssetUUID(), name, description, type, asset.getGroups());
+    }
+
+    public void addGroup(Group group) {
+        this.groups.add(group);
+    }
+
+    public void removeGroup(Group group) {
+        groups.remove(group);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Asset asset = (Asset) o;
+        return Objects.equals(assetUUID, asset.assetUUID) && Objects.equals(name, asset.name) && Objects.equals(description, asset.description) && Objects.equals(type, asset.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(assetUUID, name, description, type);
     }
 }
